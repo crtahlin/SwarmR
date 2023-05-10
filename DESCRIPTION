@@ -8,6 +8,8 @@ Description: Gets data and provides analysis of data avaialable about Swarm dece
 License: MIT + file LICENSE
 Imports:
     ggplot2,
+    ggprism,
+    ggthemes,
     httr,
     jsonlite
 Encoding: UTF-8
