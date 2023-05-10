@@ -3,6 +3,8 @@
 export(batch_depth_to_bytes)
 export(batch_price_of_storage)
 export(global_stamp_data)
+export(nodes_needed_for_storage)
+export(numNbhoodsHigherThan)
 export(plot_BZZ_paid_per_day)
 export(plot_storage_per_day)
 import(ggplot2)
