@@ -13,7 +13,7 @@
 batch_price_of_storage <- function (depth,
                                     duration_in_blocks = 17280,
                                     price_per_chunk) {
-  total_price <- 2 ^ (stamp_depth) * (duration_in_blocks) * (price_per_chunk)
+  total_price <- 2 ^ (depth) * (duration_in_blocks) * (price_per_chunk)
 
   return(total_price)
 }
