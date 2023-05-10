@@ -8,7 +8,7 @@
 #' @param scale_in Scale to convert to - "GB" or "TB" for Gigabytes and Terabytes.
 #'
 #' @export
-convert_batch_depth_to_bytes <- function (depth, scale_in = "GB") {
+batch_depth_to_bytes <- function (depth, scale_in = "GB") {
   # TODO check if depth is a valid whole number
   if (scale_in == "GB") {factor <- 1024*1024*1024}
   if (scale_in == "TB") {factor <- 1024*1024*1024*1024}
