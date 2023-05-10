@@ -8,7 +8,7 @@
 #' @importFrom httr content
 #'
 #' @export
-load_global_stamp_data <- function () {
+global_stamp_data <- function () {
   stamp_data <- GET(url = "http://localhost:1635/batches")
   stamp_data <- parse_json(content(stamp_data, as = "text"), simplifyVector = TRUE)
   return(stamp_data$batches)
