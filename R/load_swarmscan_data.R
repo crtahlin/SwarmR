@@ -1,8 +1,4 @@
-<<<<<<< HEAD
-#' Load swarmscan data
-=======
 #' Load swarmscan nodes data
->>>>>>> 6218e54 (add function that loads swarmscan data about nodes)
 #'
 #' Loads swarmscan.io data about nodes on the network, from the "https://api.swarmscan.io/v1/network/dump" endpoint.
 #'
