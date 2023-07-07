@@ -2,7 +2,12 @@
 
 export(batch_depth_to_bytes)
 export(batch_price_of_storage)
+export(first_n_places)
+export(generate_short_overlay)
 export(global_stamp_data)
+export(hexadecimal2binary)
+export(load_swarmscan_countries)
+export(load_swarmscan_data)
 export(nodes_needed_for_storage)
 export(numNbhoodsHigherThan)
 export(plot_BZZ_paid_per_day)
