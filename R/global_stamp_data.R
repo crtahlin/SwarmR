@@ -9,7 +9,7 @@
 #'
 #' @export
 global_stamp_data <- function () {
-  stamp_data <- GET(url = "http://localhost:1635/batches")
+  stamp_data <- GET(url = "http://localhost:1633/batches")
   stamp_data <- parse_json(content(stamp_data, as = "text"), simplifyVector = TRUE)
   return(stamp_data$batches)
 }
