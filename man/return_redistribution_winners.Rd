@@ -4,12 +4,14 @@
 \alias{return_redistribution_winners}
 \title{Get redistribution winners data from Swarmscan}
 \usage{
-return_redistribution_winners(startRound = 168089, endRound)
+return_redistribution_winners(startRound = 168089, endRound, max_retries = 3)
 }
 \arguments{
 \item{startRound}{Which round to start with; deafaults to 168089 which is the first recorder round (?).}
 
 \item{endRound}{Which round to end with.}
+
+\item{max_retries}{Maximum number of retry attempts per API request (default 3).}
 }
 \value{
 Returns a data frame of results with winners.

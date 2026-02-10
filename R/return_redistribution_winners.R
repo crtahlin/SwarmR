@@ -5,17 +5,31 @@
 #'
 #' @param startRound Which round to start with; deafaults to 168089 which is the first recorder round (?).
 #' @param endRound Which round to end with.
+#' @param max_retries Maximum number of retry attempts per API request (default 3).
 #'
 #' @returns Returns a data frame of results with winners.
 #'
 #' @export
-return_redistribution_winners <- function (startRound = 168089, endRound) {
+return_redistribution_winners <- function (startRound = 168089, endRound, max_retries = 3) {
   result <- data.frame()
 
   for (round in  c(seq(startRound, endRound, 10), endRound)) {
-    redistributionDataBlock <- GET(url = paste0("https://api.swarmscan.io/v1/redistribution/rounds?start=", round))
-    redistributionDataBlockParsed <- parse_json(content(redistributionDataBlock, as = "text"), simplifyVector = TRUE)
-    # browser()
+    redistributionDataBlockParsed <- NULL
+    for (attempt in seq_len(max_retries)) {
+      redistributionDataBlockParsed <- tryCatch({
+        redistributionDataBlock <- GET(url = paste0("https://api.swarmscan.io/v1/redistribution/rounds?start=", round))
+        parse_json(content(redistributionDataBlock, as = "text"), simplifyVector = TRUE)
+      }, error = function(e) {
+        message("Round ", round, ": attempt ", attempt, " failed - ", conditionMessage(e))
+        NULL
+      })
+      if (!is.null(redistributionDataBlockParsed)) break
+      if (attempt < max_retries) {
+        Sys.sleep(2^attempt) # exponential backoff: 2s, 4s, 8s
+      } else {
+        stop("Failed after ", max_retries, " attempts at round ", round)
+      }
+    }
     eventsData <- redistributionDataBlockParsed$rounds$events # extract the data frame
     # loop through the data frame, looking for claims
     for( i in (1 : length(eventsData))) {
